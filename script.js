@@ -26,8 +26,6 @@ function operate(x, operator, y) {
 
 const display = document.querySelector(".display");
 let displayValue = "";
-let firstNum = "";
-let operation = "";
 
 function updateDisplay(n = "") {
   displayValue += n;
@@ -35,9 +33,18 @@ function updateDisplay(n = "") {
 }
 
 function resetDisplay() {
-  displayValue = "0";
-  updateDisplay();
+  displayValue = "";
+  display.innerHTML = 0;
 }
+
+document.getElementById("clear").onclick = () => {
+  firstNum = "";
+  operation = "";
+  secondNum = "";
+  resetDisplay();
+};
+
+// Number Population
 
 document.getElementById("1").onclick = () => {
   updateDisplay(1);
@@ -68,4 +75,60 @@ document.getElementById("9").onclick = () => {
 };
 document.getElementById("0").onclick = () => {
   updateDisplay(0);
+};
+
+//
+
+document.getElementById("addition").onclick = () => {
+  firstNum = displayValue;
+  operation = "+";
+
+  resetDisplay();
+
+  console.log(firstNum);
+  console.log(operation);
+};
+
+document.getElementById("subtraction").onclick = () => {
+  firstNum = displayValue;
+  operation = "-";
+
+  resetDisplay();
+
+  console.log(firstNum);
+  console.log(operation);
+};
+
+document.getElementById("multiplication").onclick = () => {
+  firstNum = displayValue;
+  operation = "*";
+
+  resetDisplay();
+
+  console.log(firstNum);
+  console.log(operation);
+};
+
+document.getElementById("division").onclick = () => {
+  firstNum = displayValue;
+  operation = "/";
+
+  resetDisplay();
+
+  console.log(firstNum);
+  console.log(operation);
+};
+
+//
+
+document.getElementById("equals").onclick = () => {
+  secondNum = displayValue;
+  console.log(secondNum);
+
+  if (operation == "/" && secondNum == 0) {
+    return alert("You can't divide by zero, silly.");
+  }
+
+  displayValue = operate(firstNum, operation, secondNum);
+  updateDisplay();
 };
